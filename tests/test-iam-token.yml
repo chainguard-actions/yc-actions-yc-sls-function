@@ -1,0 +1,27 @@
+name: Test with IAM token
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        continue-on-error: true
+        uses: .
+        with:
+          yc-iam-token: 'fake-iam-token-for-testing'
+          folder-id: 'fake-folder-id'
+          function-name: 'test-function-iam'
+          runtime: 'nodejs18'
+          entrypoint: 'index.handler'
+      - name: Assert action ran (IAM token provided)
+        run: |
+          echo "Action outcome: ${{ steps.action.outcome }}"
+          # The action is expected to fail with a fake IAM token
+          # but it must have started (not skipped)
+          if [ "${{ steps.action.outcome }}" = "skipped" ]; then
+            echo "FAIL: action was skipped, expected it to run"
+            exit 1
+          fi
+          echo "PASS: action ran with yc-iam-token and folder-id inputs"

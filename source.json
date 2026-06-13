@@ -1,0 +1,11 @@
+{
+  "owner": "yc-actions",
+  "repo": "yc-sls-function",
+  "version": "v3.3.0",
+  "commit_sha": "6b2f451f1ebb2c28f694c334f156aa0a18d7e095",
+  "url": "https://github.com/yc-actions/yc-sls-function",
+  "policy_sha": "d636be7e43ef829af6e853da6b3c7566db9f72fe",
+  "test_policy_sha": "843adf9e4b8f85d0c08b27b9d0b09dd094b54702",
+  "test_agent_version": "1",
+  "harden_agent_version": "1"
+}
