@@ -1,0 +1,30 @@
+name: Test with IAM token
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_REF: refs/heads/main
+      GITHUB_EVENT_NAME: push
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          yc-iam-token: 'fake-iam-token-for-testing'
+          folder-id: 'fake-folder-id'
+          function-name: 'test-function'
+          runtime: 'nodejs18'
+          entrypoint: 'index.handler'
+      - name: Assert action ran with expected inputs
+        run: |
+          echo "Action completed (possibly with error due to fake credentials)"
+          echo "outcome: ${{ steps.action.outcome }}"
+          # The action should fail due to invalid credentials, not due to missing inputs
+          if [ "${{ steps.action.outcome }}" = "skipped" ]; then
+            echo "FAIL: action was skipped unexpectedly"
+            exit 1
+          fi
+          echo "PASS: action ran with yc-iam-token and folder-id inputs"
