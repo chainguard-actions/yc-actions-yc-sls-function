@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "es2022",
+    "rootDir": ".",
+    "moduleResolution": "bundler",
+    "baseUrl": "./",
+    "sourceMap": true,
+    "outDir": "./lib",
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "newLine": "lf",
+    "isolatedModules": true
+  },
+  "exclude": [
+    "node_modules",
+    "__tests__",
+    "**/__mocks__"
+  ],
+    "include": [
+        "src/**/*.ts"
+    ],
+}
