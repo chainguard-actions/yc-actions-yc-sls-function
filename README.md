@@ -14,6 +14,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v4.0.0 | [`v4.0.0`](https://github.com/chainguard-actions/yc-actions-yc-sls-function/tree/v4.0.0) | [`7497c3e`](https://github.com/yc-actions/yc-sls-function/commit/7497c3ea9d1759df27201c521e970968a5ab2b7a) |
 | v4.1.0 | [`v4.1.0`](https://github.com/chainguard-actions/yc-actions-yc-sls-function/tree/v4.1.0) | [`29158bc`](https://github.com/yc-actions/yc-sls-function/commit/29158bcd07ac5d8e726e663722ddbabee4df60b3) |
 | v5.0.0 | [`v5.0.0`](https://github.com/chainguard-actions/yc-actions-yc-sls-function/tree/v5.0.0) | [`aa63b14`](https://github.com/yc-actions/yc-sls-function/commit/aa63b148b193b313b8161cf6da5eb202edbaffed) |
+| v5.1.0 | [`v5.1.0`](https://github.com/chainguard-actions/yc-actions-yc-sls-function/tree/v5.1.0) | [`e97faed`](https://github.com/yc-actions/yc-sls-function/commit/e97faedf0d0c96d415af98f58b04f3c6034c1a9f) |
 
 ## Privacy
 
