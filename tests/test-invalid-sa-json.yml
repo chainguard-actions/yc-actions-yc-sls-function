@@ -1,0 +1,41 @@
+name: Test invalid SA JSON credentials error handling
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run action with invalid SA JSON credentials (expect failure)
+        id: action
+        uses: .
+        continue-on-error: true
+        with:
+          yc-sa-json-credentials: |
+            {
+              "id": "fake-key-id",
+              "service_account_id": "fake-sa-id",
+              "created_at": "2024-01-01T00:00:00Z",
+              "key_algorithm": "RSA_2048",
+              "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAfake\n-----END PUBLIC KEY-----\n",
+              "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCfake\n-----END PRIVATE KEY-----\n"
+            }
+          folder-id: 'b1gfakefolderid123'
+          function-name: 'test-function-name'
+          runtime: 'python311'
+          entrypoint: 'main.handler'
+          memory: '256Mb'
+          execution-timeout: '10'
+          environment: |
+            MY_VAR=hello
+            ANOTHER_VAR=world
+
+      - name: Assert action failed due to invalid SA JSON credentials
+        run: |
+          echo "outcome: ${{ steps.action.outcome }}"
+          if [ "${{ steps.action.outcome }}" != "failure" ]; then
+            echo "FAIL: expected action to fail when invalid SA JSON credentials are provided"
+            exit 1
+          fi
+          echo "PASS: action correctly failed with invalid SA JSON credentials"
